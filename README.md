@@ -8,7 +8,11 @@ GI Cancers 2D Gallery is the integration between Unity and one or more Rasa Unit
 - [ ] Ability to have at least 2 multi-turn conversations where the user may ask follow-up questions once the bot responds to their original query.
 - [ ] Ability to collect data from the user, e.g., on what date did the issue occur, how many items did you have in your order, etc.
 - [ ] Ability to engage in some amount of small talk (e.g., hi, how are you, etc.)
-- [ ] Ability to use a database to store information obtained from the user
+- [ ] Ability to use a **database to store information obtained from the user**
+    - [ ] Creating Tables in MySQL Docker Container for Database on Colon Cancer user symptoms, risk factors, treatment options for early or advanced stage colon cancer, etc
+    - [ ] Need to create SpringBoot Docker container middleware layer for passing data between Rasa chatbot and MySQL database
+
+
 - [ ] Ability to make **2 API calls to retrieve information from an external source**. (At least one of these APIs must be outside of what is built into Rasa i.e time/weather)
 Needs to be deployed on Slack (see below).
 
@@ -165,6 +169,10 @@ docker run --name rasa-run --gpus all -it --privileged -p 5005:5005 -v C:\Users\
 ~~~
 
 ## References
+
+- [MayoClinic: Colon Cancer](https://www.mayoclinic.org/diseases-conditions/colon-cancer/symptoms-causes/syc-20353669)
+
+- [MayoClinic API](https://gbs.mayoclinic.org/licensable-content/content-platform.php)
 
 - [Storing data to the Database | Rasa Chatbot | Part - 1](https://www.youtube.com/watch?v=rS4Wb8hvggI)
 
