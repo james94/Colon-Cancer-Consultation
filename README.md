@@ -2,13 +2,19 @@
 
 GI Cancers 2D Gallery is the integration between Unity and one or more Rasa Unity Chatbots. Unity acts as a client connecting to a Rasa server deployed in a Docker container.
 
-## Pull Rasa Docker Image
+## Part 1: Colon Cancer Rasa Chatbot
+
+When you hit play in Unity, you are taken to the Colon Cancer Rasa Chatbot view:
+
+![colon_cancer_rasa](images/rasa_unity_colon_cancer_part1.jpg)
+
+## Appendix: Building a RASA Assistant in Docker
+
+### Pull Rasa Docker Image
 
 ~~~bash
 docker pull rasa/rasa:latest
 ~~~
-
-## Building a RASA Assistant in Docker
 
 ### Setup RASA Project
 
