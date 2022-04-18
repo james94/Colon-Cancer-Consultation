@@ -163,3 +163,9 @@ Talk to our Rasa Chatbot from Unity:
 # Test: Talk to your Virtual Assistant from Unity
 docker run --name rasa-run --gpus all -it --privileged -p 5005:5005 -v C:\Users\james\Documents\GitHub\GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va:/app --net my-project  rasa/rasa:3.1.0-full run
 ~~~
+
+## References
+
+- [Storing data to the Database | Rasa Chatbot | Part - 1](https://www.youtube.com/watch?v=rS4Wb8hvggI)
+
+- [Storing data to the Database | Rasa Chatbot | Part - 2](https://www.youtube.com/watch?v=Ds8cB3LZwfU)
