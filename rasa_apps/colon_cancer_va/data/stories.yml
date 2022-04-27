@@ -28,3 +28,18 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+# - story: colon cancer consultation
+#   steps:
+#   - intent: greet
+#   - action: utter_cc_queries #1
+#   - intent: what_is_cc
+#   - action: utter_cc_intro #2
+#   # - action: fetch_cc_overview
+#   - intent: whose_cc_affect
+#   - action: utter_cc_affect #3
+#   - intent: how_cc_develop
+#   - action: utter_cc_develop #4
+#   - intent: what_cc_symptoms
+#   - action: fetch_cc_symptoms #1 API Call to Mayoclinic, #5
+

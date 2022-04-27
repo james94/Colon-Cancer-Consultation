@@ -8,10 +8,26 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  # - what_is_cc
+  # - whose_cc_affect
+  # - how_cc_develop
+  # - what_cc_symptoms
 
 responses:
   utter_greet:
   - text: "Hey! How are you?"
+
+  # utter_cc_queries:
+  # - text: "Hey! What are your queries on colon cancer?"
+
+  # utter_cc_intro:
+  # - text: "Colon cancer starts in the large intestine moving to the digestive tract."
+
+  # utter_cc_affect:
+  # - text: "Colon cancer mainly affects older adults, but it can happen at any age."
+
+  # utter_cc_develop:
+  # - text: "Colon cancer develops over 5 stages from polyps in the intestine to tumors in other areas."
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -36,3 +52,4 @@ session_config:
 # Added a section for custom actions, including my new action
 actions:
   - action_joke
+  # - fetch_cc_symptoms

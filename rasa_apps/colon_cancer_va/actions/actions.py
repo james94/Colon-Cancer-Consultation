@@ -26,6 +26,11 @@
 #
 #         return []
 
+# import scrapy
+# from scrapy.crawler import CrawlerProcess
+# from collections import OrderedDict
+# from tqdm import tqdm
+
 import requests
 import json
 from rasa_sdk import Action
@@ -47,3 +52,29 @@ class ActionJoke(Action):
         joke = request["value"]["joke"] # extract a joke from returned json response
         dispatcher.utter_message(text=joke) # send the message back to the user
         return []
+
+# class FetchColonCancerSymptoms(Action):
+#     global cc_symptom_names
+#     cc_symptom_names = []
+
+#     class MayoClinicCCSymptomsSpider(scrapy.Spider):
+#         name = "mc_cc_symptoms_spider"
+
+#         def start_requests(self): # make an api request to mayoclinic
+#             cc_symptoms_url = "https://www.mayoclinic.org/diseases-conditions/colon-cancer/symptoms-causes/syc-20353669"
+#             yield scrapy.Request(url=cc_symptoms_url, callback=self.parse)
+
+#         def parse(self, response):
+#             cc_symptom_names = response.xpath('//h2[text()="Symptoms"]/following-sibling::ul[1]/li/text()').extract()
+        
+#     def name(self):
+#         return "fetch_cc_symptoms"
+
+#     def run(self, dispatcher, tracker, domain):
+#         process = CrawlerProcess({
+#             'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
+#         })
+#         process.crawl(self.MayoClinicCCSymptomsSpider)
+#         process.start()
+#         dispatcher.utter_message(text=cc_symptom_names)
+#         return []

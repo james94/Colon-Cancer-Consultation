@@ -89,3 +89,27 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+# - intent: what_is_cc
+#   examples: |
+#     - What is colon cancer?
+#     - Tell me about colon cancer
+
+# - intent: whose_cc_affect
+#   examples: |
+#     - Who does colon cancer affect?
+#     - Who is affected by colon cancer?
+
+# - intent: how_cc_develop
+#   examples: |
+#     - How does colon cancer develop?
+#     - What are the stages of colon cancer?
+#     - What are the phases of colon cancer?
+#     - How many stages are in colon cancer?
+#     - How many phases are in colon cancer?
+
+# - intent: what_cc_symptoms
+#   examples: |
+#     - What are the signs of colon cancer?
+#     - What are the symptoms of colon cancer?
+
