@@ -37,8 +37,8 @@ stories:
   - action: utter_cc_intro
   - intent: whose_cc_affect
   - action: utter_cc_affect
-  # - intent: how_cc_develop
-  # - action: utter_cc_develop
-#   - intent: what_cc_symptoms
-#   - action: fetch_cc_symptoms #1 API Call to Mayoclinic, #5
+  - intent: how_cc_develop
+  - action: utter_cc_develop
+  # - intent: what_cc_symptoms
+  # - action: action_cc_symptoms
 

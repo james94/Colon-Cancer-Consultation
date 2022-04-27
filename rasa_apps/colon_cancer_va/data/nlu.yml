@@ -100,13 +100,13 @@ nlu:
     - Who does colon cancer affect?
     - Who is affected by colon cancer?
 
-# - intent: how_cc_develop
-#   examples: |
-#     - How does colon cancer develop?
-#     - What are the stages of colon cancer?
-#     - What are the phases of colon cancer?
-#     - How many stages are in colon cancer?
-#     - How many phases are in colon cancer?
+- intent: how_cc_develop
+  examples: |
+    - How does colon cancer develop?
+    - What are the stages of colon cancer?
+    - What are the phases of colon cancer?
+    - How many stages are in colon cancer?
+    - How many phases are in colon cancer?
 
 # - intent: what_cc_symptoms
 #   examples: |
