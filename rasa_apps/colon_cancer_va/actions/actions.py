@@ -36,21 +36,6 @@ import requests
 import json
 from rasa_sdk import Action
 
-cc_symptom_names = []
-
-class MayoClinicCCSymptomsSpider(scrapy.Spider):
-    name = "mc_cc_symptoms_spider"
-
-    def start_requests(self): # make an api request to mayoclinic
-        cc_symptoms_url = "https://www.mayoclinic.org/diseases-conditions/colon-cancer/symptoms-causes/syc-20353669"
-        yield scrapy.Request(url=cc_symptoms_url, callback=self.parse)
-
-    def parse(self, response):
-        cc_symptom_names = response.xpath('//h2[text()="Symptoms"]/following-sibling::ul[1]/li/text()').extract()
-        print("Printing CC Symptom Names")
-        print(cc_symptom_names)
-
-
 # 1. In 'data/stories.yml', replace 'utter_cheer_up' with the custom action 'action_joke'
 # tell your bot to use this new action
 # 2. In 'domain.yml', add a section for custom actions, including your
@@ -60,21 +45,23 @@ class MayoClinicCCSymptomsSpider(scrapy.Spider):
 # 5. Create a network to connect the two containers: docker network create my-project
 # 6. Run the custom actions with the following command: docker run '' '' --net my-project ..
 class ActionJoke(Action):
+    cc_symptom_names = []
+
+    class MayoClinicCCSymptomsSpider(scrapy.Spider):
+        name = "mc_cc_symptoms_spider"
+
+        def start_requests(self): # make an api request to mayoclinic
+            cc_symptoms_url = "https://www.mayoclinic.org/diseases-conditions/colon-cancer/symptoms-causes/syc-20353669"
+            yield scrapy.Request(url=cc_symptoms_url, callback=self.parse)
+
+        def parse(self, response):
+            global cc_symptom_names
+            cc_symptom_names = response.xpath('//h2[text()="Symptoms"]/following-sibling::ul[1]/li/text()').extract()
+            # print("Printing CC Symptom Names")
+            # print(cc_symptom_names)
+
     def name(self):
         return "action_joke"
-
-    # def execute_crawling(self, dispatcher):
-    #     print("Creating Crawler Process")
-    #     process_symptoms = CrawlerProcess({
-    #         'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
-    #     })
-    #     print("Passing MayoClinicCCSpider to crawl")
-    #     process_symptoms.crawl(MayoClinicCCSymptomsSpider)
-    #     process_symptoms.start()
-    #     print("Printing CC Symptoms in Action Joke")
-    #     print(cc_symptom_names)
-    #     dispatcher.utter_message(text="Testing CC Symptoms")
-
 
     def run(self, dispatcher, tracker, domain):
         # request = requests.get("http://api.icndb.com/jokes/random").json() # make an api call
@@ -83,9 +70,12 @@ class ActionJoke(Action):
         # dispatcher.utter_message(text=joke) # send the message back to the user
         # return []
 
+        global cc_symptom_names
         scrapydo.setup()
-        scrapydo.run_spider((MayoClinicCCSymptomsSpider))
-        dispatcher.utter_message(text="Testing CC Symptoms")
+        scrapydo.run_spider(self.MayoClinicCCSymptomsSpider)
+        symptoms_pretty="\n".join(cc_symptom_names) # puts each item on newline in string
+        # print(symptoms_pretty)
+        dispatcher.utter_message(text=symptoms_pretty)
 
         return []
 
