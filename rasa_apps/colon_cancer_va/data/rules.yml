@@ -11,3 +11,20 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Activate CC Symptoms form
+  steps:
+  - intent: request_cc_symptoms_form
+  - action: symptoms_form
+  - active_loop: symptoms_form
+
+- rule: Submit CC Symptoms form
+  condition:
+  - active_loop: symptoms_form
+  steps:
+  - action: symptoms_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_slots_values

@@ -118,8 +118,134 @@ nlu:
     - What are the signs of colon cancer?
     - What are the symptoms of colon cancer?
 
+- intent: request_cc_symptoms_form
+  examples: |
+    - I want to fill in the colon cancer symptoms form.
+    - I would like to share my colon cancer symptoms.
+    - Where do I write my colon cancer symptoms?
+    - Can I express my colon cancer symptoms?
+
+# - intent: patient_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - 4
+#     - 5
+#     - 6
+#     - 7
+#     - 8
+#     - 9
+#     - 10
+
+# - intent: patient_name
+#   examples: |
+#     - maria
+#     - carmen
+#     - josefa
+#     - dolores
+#     - jose
+#     - antonio
+#     - serenity
+#     - amir
+#     - caleb
+#     - carter
+
+# - intent: patient_timestamp
+#   examples: |
+#     - 00:00:00
+#     - 01:00:00
+#     - 02:00:00
+#     - 03:00:00
+#     - 04:00:00
+#     - 05:00:00
+#     - 06:00:00
+#     - 07:00:00
+#     - 08:00:00
+#     - 09:00:00
+#     - 10:00:00
+#     - 11:00:00
+#     - 12:00:00
+#     - 13:00:00
+#     - 14:00:00
+#     - 15:00:00
+#     - 16:00:00
+#     - 17:00:00
+#     - 18:00:00
+#     - 19:00:00
+#     - 20:00:00
+#     - 21:00:00
+#     - 22:00:00
+#     - 23:00:00
+
+# - intent: patient_bowel_habit_changes
+#   examples: |
+#     - diarrhea
+#     - constipation
+#     - dry stools
+#     - hard stools
+#     - stool black color
+#     - stool clay color
+#     - stool red color
+#     - stool white color
+#     - limited control moving bowels
+
+# - intent: patient_weakness
+#   examples: |
+#     - True
+#     - False
+
+# - intent: patient_fatigue
+#   examples: |
+#     - True
+#     - False
+
+# - intent: patient_rectal_bleeding
+#   examples: |
+#     - True
+#     - False
+
+# - intent: patient_poop_blood
+#   examples: |
+#     - True
+#     - False
+
+# - intent: patient_abdominal_discomfort
+#   examples: |
+#     - cramps
+#     - gas
+#     - pain
+#     - mild
+#     - severe
+#     - burning
+#     - achy
+#     - constant
+#     - intermittent
+#     - localized
+#     - generalized
+
+# - intent: patient_bowel_not_empty_feeling
+#   examples: |
+#     - True
+#     - False
+
+# - intent: patient_unexplained_weightloss
+#   examples: |
+#     - True
+#     - False
+
 - intent: what_cc_riskfactors
   examples: |
     - What are the risk factors of colon cancers?
     - What are risk factors for colon cancer?
     - What are colon cancer risk factors?
+
+- intent: request_cc_riskfactors_form
+  examples: |
+    - I want to fill in the colon cancer risk factors form?
+    - I would like to share my colon cancer risk factors?
+    - Where do I write my colon cancer risk factors?
+    - Can I express my colon cancer risk factors?
+
+  # I collect from user colon cancer symptoms or risk factors
+  # then I will store this data into MySQL database

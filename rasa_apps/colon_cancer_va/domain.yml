@@ -14,6 +14,124 @@ intents:
   - how_cc_develop
   - what_cc_symptoms
   - what_cc_riskfactors
+  - request_cc_riskfactors_form
+  - request_cc_symptoms_form
+  # - patient_id
+  # - patient_name
+  # - patient_timestamp
+  # - patient_bowel_habit_changes
+  # - patient_weakness
+  # - patient_fatigue
+  # - patient_rectal_bleeding
+  # - patient_poop_blood
+  # - patient_abdominal_discomfort
+  # - patient_bowel_not_empty_feeling
+  # - patient_unexplained_weightloss
+
+forms:
+  symptoms_form:
+    required_slots:
+      - patient_id
+      - patient_name
+      - patient_timestamp
+      - patient_bowel_habit_changes
+      - patient_weakness
+      - patient_fatigue
+      - patient_rectal_bleeding
+      - patient_poop_blood
+      - patient_abdominal_discomfort
+      - patient_bowel_not_empty_feeling
+      - patient_unexplained_weightloss
+
+slots:
+  patient_id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_id
+  patient_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_name
+  patient_timestamp:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_timestamp
+  patient_bowel_habit_changes:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_bowel_habit_changes
+  patient_weakness:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_weakness
+  patient_fatigue:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_fatigue
+  patient_rectal_bleeding:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_rectal_bleeding
+  patient_poop_blood:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_poop_blood
+  patient_abdominal_discomfort:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_abdominal_discomfort
+  patient_bowel_not_empty_feeling:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_bowel_not_empty_feeling
+  patient_unexplained_weightloss:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: symptoms_form
+            requested_slot: patient_unexplained_weightloss
 
 responses:
   utter_greet:
@@ -30,6 +148,46 @@ responses:
 
   utter_cc_develop:
   - text: "Colon cancer develops over 5 stages from polyps in the intestine to tumors in other areas."
+
+  utter_cc_patient_name:
+  - text: "Please provide your name as you share your colon cancer symptoms."
+
+  utter_ask_patient_id:
+    - text: "What is your patient ID?"
+  utter_ask_patient_name:
+    - text: "So your ID is {patient_id}, What is your name?"
+  utter_ask_patient_timestamp:
+    - text: "So {patient_name},  What is the current time in HH:MM:SS?"
+  utter_ask_patient_bowel_habit_changes:
+    - text: "What are your bowel habit changes?"
+  utter_ask_patient_weakness:
+    - text: "Have you noticed any muscle weakness (True | False)?"
+  utter_ask_patient_fatigue:
+    - text: "Have you noticed any energy fatigue (True | False)?"
+  utter_ask_patient_rectal_bleeding:
+    - text: "Have you noticed any rectal bleeding (True | False)?"
+  utter_ask_patient_poop_blood:
+    - text: "Have you noticed any blood in your poop (True | False)?"
+  utter_ask_patient_abdominal_discomfort:
+    - text: "How would you describe your ab discomfort (cramps, pain, etc)?"
+  utter_ask_patient_bowel_not_empty_feeling:
+    - text: "Have you felt like your bowel isnt empty (True | False)?"
+  utter_ask_patient_unexplained_weightloss:
+    - text: "Have you experienced unexplained weight loss (True | False)?"
+  utter_submit:
+    - text: "Thanks for filling in your colon cancer symptoms."
+  utter_slots_values:
+    - text: "Your colon cancer symptoms recorded: patient_id: {patient_id};
+            patient_name: {patient_name};
+            patient_timestamp: {patient_timestamp};
+            patient_bowel_habit_changes: {patient_bowel_habit_changes};
+            patient_weakness: {patient_weakness};
+            patient_fatigue: {patient_fatigue};
+            patient_rectal_bleeding: {patient_rectal_bleeding};
+            patient_poop_blood: {patient_poop_blood};
+            patient_abdominal_discomfort: {patient_abdominal_discomfort};
+            patient_bowel_not_empty_feeling: {patient_bowel_not_empty_feeling};
+            patient_unexplained_weightloss: {patient_unexplained_weightloss}"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"

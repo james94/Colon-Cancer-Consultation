@@ -35,10 +35,10 @@ stories:
   - action: utter_greet
   - intent: what_is_cc
   - action: utter_cc_intro
-  - intent: what_cc_symptoms
-  - action: action_symptoms
   - intent: what_cc_riskfactors
   - action: action_riskfactors
+  - intent: what_cc_symptoms
+  - action: action_symptoms
 
 - story: colon cancer consult path 2
   steps:
