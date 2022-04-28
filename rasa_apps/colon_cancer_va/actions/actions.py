@@ -158,12 +158,10 @@ class ActionSubmitSymptomsFormDB(Action):
             "patient_bowel_not_empty_feeling": tracker.get_slot("patient_bowel_not_empty_feeling"),
             "patient_unexplained_weightloss": tracker.get_slot("patient_unexplained_weightloss")}
 
-        # print("patient_id =", tracker.get_slot("patient_id"))
-
         ADD_SYMPTOMS_END_POINT = "http://rasa-sb-server:8080/addsymptoms"
         patient_id_header = {'id': tracker.get_slot("patient_id")}
 
         response = requests.post(url = ADD_SYMPTOMS_END_POINT, data = symptoms_json, headers = patient_id_header)
         print(response.status_code)
-        dispatcher.utter_message(text="Sent CC Symptoms Json To SB: {0}".format(response.text))
+        dispatcher.utter_message(text="Sent CC Symptoms Json To SB: {0}".format(response.status_code))
         return []
