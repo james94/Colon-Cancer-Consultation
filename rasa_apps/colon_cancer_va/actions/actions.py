@@ -141,3 +141,29 @@ class ActionCCRiskFactors(Action):
         dispatcher.utter_message(text=risk_factors_pretty)
         return []
 
+class ActionSubmitSymptomsFormDB(Action):
+    def name(self):
+        return "action_submit_symptoms_form"
+
+    def run(self, dispatcher, tracker, domain):
+        symptoms_json = {"patient_id": tracker.get_slot("patient_id"),
+            "patient_name": tracker.get_slot("patient_name"),
+            "patient_timestamp": tracker.get_slot("patient_timestamp"),
+            "patient_bowel_habit_changes": tracker.get_slot("patient_bowel_habit_changes"),
+            "patient_weakness": tracker.get_slot("patient_weakness"),
+            "patient_fatigue": tracker.get_slot("patient_fatigue"),
+            "patient_rectal_bleeding": tracker.get_slot("patient_rectal_bleeding"),
+            "patient_poop_blood": tracker.get_slot("patient_poop_blood"),
+            "patient_abdominal_discomfort": tracker.get_slot("patient_abdominal_discomfort"),
+            "patient_bowel_not_empty_feeling": tracker.get_slot("patient_bowel_not_empty_feeling"),
+            "patient_unexplained_weightloss": tracker.get_slot("patient_unexplained_weightloss")}
+
+        # print("patient_id =", tracker.get_slot("patient_id"))
+
+        ADD_SYMPTOMS_END_POINT = "http://rasa-sb-server:8080/addsymptoms"
+        patient_id_header = {'id': tracker.get_slot("patient_id")}
+
+        response = requests.post(url = ADD_SYMPTOMS_END_POINT, data = symptoms_json, headers = patient_id_header)
+        print(response.status_code)
+        dispatcher.utter_message(text="Sent CC Symptoms Json To SB: {0}".format(response.text))
+        return []

@@ -2,8 +2,8 @@
 FROM mysql:8.0.27
 
 ENV MYSQL_ALLOW_EMPTY_PASSWORD=true
-ENV MYSQL_USER=gicancers_docker
-ENV MYSQL_PASSWORD=gicancers_docker
+ENV MYSQL_USER=rasa_docker
+ENV MYSQL_PASSWORD=rasa_docker
 ENV MYSQL_DATABASE=gicancers
 
 ARG GICANCER_DB_CREATION_SCRIPT=schema.sql

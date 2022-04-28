@@ -214,3 +214,4 @@ actions:
   - action_joke
   - action_symptoms
   - action_riskfactors
+  - action_submit_symptoms_form
