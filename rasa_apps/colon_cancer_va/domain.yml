@@ -13,6 +13,7 @@ intents:
   - whose_cc_affect
   - how_cc_develop
   - what_cc_symptoms
+  - what_cc_riskfactors
 
 responses:
   utter_greet:
@@ -54,3 +55,4 @@ session_config:
 actions:
   - action_joke
   - action_symptoms
+  - action_riskfactors

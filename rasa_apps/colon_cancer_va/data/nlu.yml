@@ -118,3 +118,8 @@ nlu:
     - What are the signs of colon cancer?
     - What are the symptoms of colon cancer?
 
+- intent: what_cc_riskfactors
+  examples: |
+    - What are the risk factors of colon cancers?
+    - What are risk factors for colon cancer?
+    - What are colon cancer risk factors?

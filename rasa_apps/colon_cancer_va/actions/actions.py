@@ -82,7 +82,7 @@ class ActionJoke(Action):
 
         return []
 
-class ActionSymptoms(Action):
+class ActionCCSymptoms(Action):
     symptom_list = []
     class MayoClinicCCSymptomsSpider(scrapy.Spider):
         name = "mc_cc_symptoms_spider"
@@ -94,8 +94,8 @@ class ActionSymptoms(Action):
         def parse(self, response):
             global symptom_list
             symptom_list = response.xpath('//h2[text()="Symptoms"]/following-sibling::ul[1]/li/text()').extract()
-            print("Printing CC Symptom Names")
-            print(symptom_list)
+            # print("Printing CC Symptom Names")
+            # print(symptom_list)
 
     def name(self):
         return "action_symptoms"
@@ -106,17 +106,38 @@ class ActionSymptoms(Action):
         scrapydo.setup()
         scrapydo.run_spider(self.MayoClinicCCSymptomsSpider)
         symptoms_pretty="\n".join(symptom_list) # puts each item on newline in string
-        print(symptoms_pretty)
+        # print(symptoms_pretty)
         dispatcher.utter_message(text=symptoms_pretty)
         return []
 
-# class ActionSymptoms(Action):
-#     def name(self):
-#         return "action_symptoms"
+# risk_factor_names = response.xpath('//h2[text()="Risk factors"]/following-sibling::ul[1]/li/strong/text()').extract()
 
-#     def run(self, dispatcher, tracker, domain):
-#         request = requests.get("http://api.icndb.com/jokes/random").json() # make an api call
-#         joke = request["value"]["joke"] # extract a joke from returned json response
-#         print(joke)
-#         dispatcher.utter_message(text=joke) # send the message back to the user
-#         return []
+class ActionCCRiskFactors(Action):
+    risk_factors = []
+
+    class MayoClinicCCRiskFactorsSpider(scrapy.Spider):
+        name = "mc_cc_risk_factors_spider"
+
+        def start_requests(self): # make an api request to mayoclinic
+            cc_risk_factors_url = "https://www.mayoclinic.org/diseases-conditions/colon-cancer/symptoms-causes/syc-20353669"
+            yield scrapy.Request(url=cc_risk_factors_url, callback=self.parse)
+
+        def parse(self, response):
+            global risk_factors
+            risk_factors = response.xpath('//h2[text()="Risk factors"]/following-sibling::ul[1]/li/strong/text()').extract()
+            # print("Printing CC Risk Factors Names")
+            # print(risk_factors)
+
+    def name(self):
+        return "action_riskfactors"
+
+    def run(self, dispatcher, tracker, domain):
+        print("ActionRiskFactors")
+        global risk_factors
+        scrapydo.setup()
+        scrapydo.run_spider(self.MayoClinicCCRiskFactorsSpider)
+        risk_factors_pretty="\n".join(risk_factors) # puts each item on newline in string
+        # print(risk_factors_pretty)
+        dispatcher.utter_message(text=risk_factors_pretty)
+        return []
+

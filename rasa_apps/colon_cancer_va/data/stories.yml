@@ -35,18 +35,38 @@ stories:
   - action: utter_greet
   - intent: what_is_cc
   - action: utter_cc_intro
-  - intent: whose_cc_affect
-  - action: utter_cc_affect
-  - intent: how_cc_develop
-  - action: utter_cc_develop
   - intent: what_cc_symptoms
   - action: action_symptoms
+  - intent: what_cc_riskfactors
+  - action: action_riskfactors
 
 - story: colon cancer consult path 2
   steps:
   - intent: greet_cc
   - action: utter_cc_queries
-  - intent: what_is_cc
-  - action: utter_cc_intro
+  - intent: how_cc_develop
+  - action: utter_cc_develop
   - intent: what_cc_symptoms
   - action: action_symptoms
+  - intent: what_cc_riskfactors
+  - action: action_riskfactors
+
+- story: colon cancer consult path 3
+  steps:
+  - intent: greet_cc
+  - action: utter_cc_queries
+  - intent: whose_cc_affect
+  - action: utter_cc_affect
+  - intent: what_cc_symptoms
+  - action: action_symptoms
+  - intent: what_cc_riskfactors
+  - action: action_riskfactors
+
+- story: colon cancer consult path 4
+  steps:
+  - intent: greet_cc
+  - action: utter_cc_queries
+  - intent: what_cc_symptoms
+  - action: action_symptoms
+  - intent: what_cc_riskfactors
+  - action: action_riskfactors
