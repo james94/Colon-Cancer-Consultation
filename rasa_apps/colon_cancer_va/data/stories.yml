@@ -39,6 +39,6 @@ stories:
   - action: utter_cc_affect
   - intent: how_cc_develop
   - action: utter_cc_develop
-  # - intent: what_cc_symptoms
-  # - action: action_cc_symptoms
+  - intent: what_cc_symptoms
+  - action: action_symptoms
 

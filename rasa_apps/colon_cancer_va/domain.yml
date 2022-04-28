@@ -11,7 +11,7 @@ intents:
   - what_is_cc
   - whose_cc_affect
   - how_cc_develop
-  # - what_cc_symptoms
+  - what_cc_symptoms
 
 responses:
   utter_greet:
@@ -52,4 +52,4 @@ session_config:
 # Added a section for custom actions, including my new action
 actions:
   - action_joke
-  # - action_cc_symptoms
+  - action_symptoms

@@ -108,8 +108,8 @@ nlu:
     - How many stages are in colon cancer?
     - How many phases are in colon cancer?
 
-# - intent: what_cc_symptoms
-#   examples: |
-#     - What are the signs of colon cancer?
-#     - What are the symptoms of colon cancer?
+- intent: what_cc_symptoms
+  examples: |
+    - What are the signs of colon cancer?
+    - What are the symptoms of colon cancer?
 
