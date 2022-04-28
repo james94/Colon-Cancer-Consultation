@@ -29,7 +29,7 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: colon cancer path 1
+- story: colon cancer consult path 1
   steps:
   - intent: greet
   - action: utter_greet
@@ -42,3 +42,11 @@ stories:
   - intent: what_cc_symptoms
   - action: action_symptoms
 
+- story: colon cancer consult path 2
+  steps:
+  - intent: greet_cc
+  - action: utter_cc_queries
+  - intent: what_is_cc
+  - action: utter_cc_intro
+  - intent: what_cc_symptoms
+  - action: action_symptoms

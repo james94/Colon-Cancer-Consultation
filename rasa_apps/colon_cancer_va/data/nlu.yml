@@ -90,6 +90,11 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
+- intent: greet_cc
+  examples: |
+    - Hi. Im here for colon cancer
+    - Im visiting about colon cancer
+
 - intent: what_is_cc
   examples: |
     - What is colon cancer?
