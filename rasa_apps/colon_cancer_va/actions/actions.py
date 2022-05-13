@@ -45,23 +45,7 @@ from rasa_sdk import Action
 # 5. Create a network to connect the two containers: docker network create my-project
 # 6. Run the custom actions with the following command: docker run '' '' --net my-project ..
 
-# 1 API Call to MayoClinic Done
 class ActionJoke(Action):
-    cc_symptom_names = []
-
-    class MayoClinicCCSymptomsSpider(scrapy.Spider):
-        name = "mc_cc_symptoms_spider"
-
-        def start_requests(self): # make an api request to mayoclinic
-            cc_symptoms_url = "https://www.mayoclinic.org/diseases-conditions/colon-cancer/symptoms-causes/syc-20353669"
-            yield scrapy.Request(url=cc_symptoms_url, callback=self.parse)
-
-        def parse(self, response):
-            global cc_symptom_names
-            cc_symptom_names = response.xpath('//h2[text()="Symptoms"]/following-sibling::ul[1]/li/text()').extract()
-            # print("Printing CC Symptom Names")
-            # print(cc_symptom_names)
-
     def name(self):
         return "action_joke"
 
@@ -73,15 +57,7 @@ class ActionJoke(Action):
         dispatcher.utter_message(text=joke) # send the message back to the user
         return []
 
-        # global cc_symptom_names
-        # scrapydo.setup()
-        # scrapydo.run_spider(self.MayoClinicCCSymptomsSpider)
-        # symptoms_pretty="\n".join(cc_symptom_names) # puts each item on newline in string
-        # # print(symptoms_pretty)
-        # dispatcher.utter_message(text=symptoms_pretty)
-
-        return []
-
+# 1st API Call using Scrapy Web Crawler to Mayo Clinic: Colon Cancer Symptoms
 class ActionCCSymptoms(Action):
     symptom_list = []
     class MayoClinicCCSymptomsSpider(scrapy.Spider):
@@ -110,8 +86,7 @@ class ActionCCSymptoms(Action):
         dispatcher.utter_message(text=symptoms_pretty)
         return []
 
-# risk_factor_names = response.xpath('//h2[text()="Risk factors"]/following-sibling::ul[1]/li/strong/text()').extract()
-
+# 2nd API Call using Scrapy Web Crawler to Mayo Clinic: Colon Cancer Risk Factors
 class ActionCCRiskFactors(Action):
     risk_factors = []
 
@@ -141,6 +116,9 @@ class ActionCCRiskFactors(Action):
         dispatcher.utter_message(text=risk_factors_pretty)
         return []
 
+# 3rd Rest API Call using Python requests to Spring Boot Server for interfacing with MySQL
+# Stores patient symptoms to MySQL through sending a POST Request to SpringBoot, which
+# then SpringBoot uses JDBC to send insert SQL statement to MySQL.
 class ActionSubmitSymptomsFormDB(Action):
     def name(self):
         return "action_submit_symptoms_form"
