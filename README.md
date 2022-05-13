@@ -52,6 +52,7 @@ Here is a link to the demo of me interacting with Rasa from Unity:
     - [Approach 1: Talk to Rasa VA from Shell](#approach-1-talk-to-rasa-va-from-shell)
     - [Approach 2: Talk to Rasa VA from Slack](#approach-2-talk-to-rasa-va-from-slack)
   - [Appendix](#appendix)
+    - [Open Issues Rasa App](#open-issues-rasa-app)
     - [Understanding Rasa Conversation Flow](#understanding-rasa-conversation-flow)
     - [Rasa Custom Actions Leverage: Scrapy](#rasa-custom-actions-leverage-scrapy)
   - [References](#references)
@@ -277,6 +278,10 @@ Here is a link to the demo of me interacting with Rasa from Slack:
 
 
 ## Appendix 
+
+### Open Issues Rasa App
+
+One issue that I noticed during the CMPE252 demo day was that Rasa App can only store the patient symptoms data one time per patient session. So if the patient has entered Rasa Shell to interact with Rasa Chatbot or executed Rasa Run Server interacting with Rasa Chatbot, they can store their patient symptoms data one time. If they try to store patient symptom data a 2nd time, Rasa Chatbot will let them know they have already received their patient symptom data. If a new patient wants to store their patient symptom data, they will have to make sure they closed the Rasa Shell or Rasa Run Server and then start it up again to store their patient symptom data.
 
 ### Understanding Rasa Conversation Flow
 
