@@ -51,7 +51,6 @@ Here is a link to the demo of me interacting with Rasa from Unity:
   - [How to Run Rasa Demo](#how-to-run-rasa-demo)
     - [Approach 1: Talk to Rasa VA from Shell](#approach-1-talk-to-rasa-va-from-shell)
     - [Approach 2: Talk to Rasa VA from Slack](#approach-2-talk-to-rasa-va-from-slack)
-    - [No requests to display yet](#no-requests-to-display-yet)
   - [Appendix](#appendix)
     - [Understanding Rasa Conversation Flow](#understanding-rasa-conversation-flow)
     - [Rasa Custom Actions Leverage: Scrapy](#rasa-custom-actions-leverage-scrapy)
@@ -243,8 +242,8 @@ docker run -d -p 4040:4040 --privileged --net colon-cancer-mayoclinic --name ngr
 
 The following public urls are examples of what you see going to **http://localhost:4040/inspect/http**:
 
-~~~md
-### No requests to display yet
+~~~bash
+#No requests to display yet
 
 To get started, make a request to one of your tunnel URLs:
 
