@@ -59,6 +59,12 @@ quit
 
 Recommended: Use Ubuntu WSL, VM, or server for this part.
 
+NOTE: If you use Ubuntu WSL, it should be integrated with Windows Docker Desktop. So when you build SpringBoot docker container, it will be part of Windows Docker Desktop docker containers.
+
+NOTE: If you use Ubuntu VM, make sure the MySQL and rest of Rasa app are built using that Ubuntu VM's Docker Desktop.
+
+NOTE: If you use Native Ubuntu Server, just make sure MySQL the rest of Rasa app docker containers are built using Ubuntu Server Docker daemon.
+
 1\. Open WSL Ubuntu terminal, Install OpenJDK and Maven:
 
 ~~~bash
