@@ -57,11 +57,14 @@ quit
 
 ## Deploy SpringBoot Alpine Docker Container with JDBC MySQL Connection
 
-1\. Install OpenJDK and Maven using Conda:
+Recommended: Use Ubuntu WSL, VM, or server for this part.
+
+1\. Open WSL Ubuntu terminal, Install OpenJDK and Maven:
 
 ~~~bash
-conda install -c conda-forge openjdk
-conda install -c conda-forge maven
+sudo apt -y update
+sudo apt -y install openjdk-17-jre-headless
+sudo apt -y install maven
 ~~~
 
 2\. Let's change to the gi-cancers-api directory:

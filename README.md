@@ -6,7 +6,11 @@ GI Cancers 2D Gallery originally was inspired by museums that feature virtual to
 
 As the requirements for the project changed for CMPE 252 and we were required to integrate our Rasa Chatbot with Slack, I stopped working on the Unity portion, so I could make sure Slack integration worked.
 
-So what will be featured on this page is how to setup the development environment with Docker containers and/or Anaconda3 on your local machine. Then we will walk through how to connect our Rasa Chatbot to our Slack Channel workspace. Finally, we will go through some example statements and queries we can send Rasa, so we can get the conversation going about Colon Cancer.
+So what will be featured on this page is how to setup the development environment with Docker containers. Then we will walk through how to connect our Rasa Chatbot to our Slack Channel workspace. Finally, we will go through some example statements and queries we can send Rasa, so we can get the conversation going about Colon Cancer.
+
+Here is a link to the demo of me setting up the Software Development Environment for GI Cancers Rasa project:
+
+- [YouTube: Setup Software Dev Env for Colon Cancer Rasa Project | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=lfyNEu5teZw)
 
 Here is a link to the demo of me interacting with Rasa from Shell:
 
@@ -76,14 +80,18 @@ Here is a link to the demo of me interacting with Rasa from Unity:
       - [x] Conversation flows you implemented + Demo
       - [x] Challenges you encountered
       - [x] Insights/lessons learned   
-- [ ] Submission of project collatoral on SJSU Canvas
-    - [ ] Link to code on GitHub + instructions on running it
+- [x] Submission of project collatoral on SJSU Canvas
+    - [x] Link to code on GitHub + instructions on running it
     - [x] Create a private GitHub repository (not public) and share access with both Amanbeer and Prof. Jetcheva
     - [x] Mention in your README file what version of Rasa the chatbot has been developed on
-    - [ ] The repository must contain a 'requirements.txt' file with all the dependencies required to run the chatbot (you can make one with `pip freeze` command)
+    - [x] The repository must contain a '[requirements.txt](./rasa_apps/RasaDockerfile/requirements.txt)' file with all the dependencies required to run the chatbot (you can make one with `pip freeze` command). As an alternative to the **requirements.txt** file, I use a **[Dockerfile](./rasa_apps/RasaDockerfile/Dockerfile)** that has all the dependencies required to run my Rasa chatbot in a Docker container. But I have added a requirements.txt file based on the conda environment running inside that Docker container.
     - [x] Mention any open issues that you found to exist in your chatbot
 
 ## Setup Software Dev Environment for Project
+
+In case you run into any issues, here is a link to the demo of me setting up the Software Development Environment for GI Cancers Rasa project:
+
+- [YouTube: Setup Software Dev Env for Colon Cancer Rasa Project | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=lfyNEu5teZw)
 
 ### Software Dependencies for Running Demo
 
@@ -136,7 +144,7 @@ You should get a Docker image with Rasa and Rasa SDK installed and other depende
 cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
 ~~~
 
-2\. We will create a docker network **colon-cancer-mayoclinic** for our Rasa Actions Server container to run in:
+2\. If you dont have the following docker network, we will create a docker network **colon-cancer-mayoclinic** for our Rasa Actions Server container to run in:
 
 ~~~bash
 docker network create colon-cancer-mayoclinic
@@ -170,8 +178,7 @@ cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
 rem Launch the Docker container named rasa-shell
 docker run --name rasa-shell -it --privileged -p 5005:5005 -v C:\Users\james\Documents\GitHub\GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va:/app --net colon-cancer-mayoclinic rasa_3.1.0_rasa_sdk_3.1.1:dev
 
-rem Once the container is launched, lets jump into it to exec rasa run server
-docker exec -it rasa-shell /bin/bash
+rem Once the container is launched, you'll auto jump into it, then exec rasa run server
 cd /app
 rasa shell
 ~~~
@@ -228,9 +235,8 @@ The following public urls are examples of what you see going to **http://localho
 
 To get started, make a request to one of your tunnel URLs:
 
-http://72f8-104-58-202-197.ngrok.io
-
-https://72f8-104-58-202-197.ngrok.io
+http://30d7-71-202-240-74.ngrok.io
+https://30d7-71-202-240-74.ngrok.io
 ~~~
 
 
@@ -238,7 +244,7 @@ https://72f8-104-58-202-197.ngrok.io
 
 ~~~batch
 rem Example of web url, change ngrok hostname "72f8-104-58-202-197.ngrok.io"
-http://72f8-104-58-202-197.ngrok.io/webhooks/slack/webhook
+http://30d7-71-202-240-74.ngrok.io/webhooks/slack/webhook
 ~~~
 
 If Slack API can connect to Rasa, you should get a verified check mark. 

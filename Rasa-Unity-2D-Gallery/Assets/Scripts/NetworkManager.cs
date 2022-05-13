@@ -15,7 +15,8 @@ public class NetworkManager : MonoBehaviour
 
     // Unity communicates to Rasa using custom connectors and POST requests.
     // Rasa implement a default rest connector which can be accessed at rasa_url
-    private const string rasa_url = "http://localhost:5005/webhooks/rest/webhook";
+    // NOTE: on next time you start ngrok docker container, you will need to update hostname
+    private const string rasa_url = "http://30d7-71-202-240-74.ngrok.io/webhooks/rest/webhook";
 
     /// <summary>
     /// This method is called when user has entered their message and hits the send

@@ -67,18 +67,18 @@ class ActionJoke(Action):
 
     def run(self, dispatcher, tracker, domain):
         print("ActionJoke")
-        # request = requests.get("http://api.icndb.com/jokes/random").json() # make an api call
-        # joke = request["value"]["joke"] # extract a joke from returned json response
-        # print(joke)
-        # dispatcher.utter_message(text=joke) # send the message back to the user
-        # return []
+        request = requests.get("http://api.icndb.com/jokes/random").json() # make an api call
+        joke = request["value"]["joke"] # extract a joke from returned json response
+        print(joke)
+        dispatcher.utter_message(text=joke) # send the message back to the user
+        return []
 
-        global cc_symptom_names
-        scrapydo.setup()
-        scrapydo.run_spider(self.MayoClinicCCSymptomsSpider)
-        symptoms_pretty="\n".join(cc_symptom_names) # puts each item on newline in string
-        # print(symptoms_pretty)
-        dispatcher.utter_message(text=symptoms_pretty)
+        # global cc_symptom_names
+        # scrapydo.setup()
+        # scrapydo.run_spider(self.MayoClinicCCSymptomsSpider)
+        # symptoms_pretty="\n".join(cc_symptom_names) # puts each item on newline in string
+        # # print(symptoms_pretty)
+        # dispatcher.utter_message(text=symptoms_pretty)
 
         return []
 

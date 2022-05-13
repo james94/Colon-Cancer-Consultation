@@ -1,6 +1,3 @@
-2022-04-28 04:32:55.477  INFO 10785 --- [main] c.c.gicancers.GicancersApplicationTests  : Starting GicancersApplicationTests using Java 17.0.3 on LAPTOP-54G81UL5 with PID 10785 (started by james in /mnt/c/Users/james/Documents/GitHub/GI-Cancers-2D-Gallery/gi-cancers-api)
-2022-04-28 04:32:55.483  INFO 10785 --- [main] c.c.gicancers.GicancersApplicationTests  : No active profile set, falling back to 1 default profile: "default"
-2022-04-28 04:33:04.756  INFO 10785 --- [main] c.c.gicancers.GicancersApplicationTests  : Started GicancersApplicationTests in 10.785 seconds (JVM running for 14.121)
-2022-04-28 05:56:35.774  INFO 13320 --- [main] c.c.gicancers.GicancersApplicationTests  : Starting GicancersApplicationTests using Java 17.0.3 on LAPTOP-54G81UL5 with PID 13320 (started by james in /mnt/c/Users/james/Documents/GitHub/GI-Cancers-2D-Gallery/gi-cancers-api)
-2022-04-28 05:56:35.780  INFO 13320 --- [main] c.c.gicancers.GicancersApplicationTests  : No active profile set, falling back to 1 default profile: "default"
-2022-04-28 05:56:47.525  INFO 13320 --- [main] c.c.gicancers.GicancersApplicationTests  : Started GicancersApplicationTests in 13.516 seconds (JVM running for 17.575)
+2022-05-13 12:41:22.459  INFO 712 --- [main] c.c.gicancers.GicancersApplicationTests  : Starting GicancersApplicationTests using Java 17.0.3 on LAPTOP-54G81UL5 with PID 712 (started by james in /mnt/c/Users/james/Documents/GitHub/GI-Cancers-2D-Gallery/gi-cancers-api)
+2022-05-13 12:41:22.489  INFO 712 --- [main] c.c.gicancers.GicancersApplicationTests  : No active profile set, falling back to 1 default profile: "default"
+2022-05-13 12:41:35.061  INFO 712 --- [main] c.c.gicancers.GicancersApplicationTests  : Started GicancersApplicationTests in 14.732 seconds (JVM running for 19.419)
