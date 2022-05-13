@@ -1,4 +1,4 @@
-# Building a RASA Assistant in Docker
+# Notes on Building a RASA Assistant in Docker
 
 ~~~bash
 conda create -n rasa-310_rasa-sdk-311 python=3.7

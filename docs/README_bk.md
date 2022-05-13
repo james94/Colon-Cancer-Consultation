@@ -1,4 +1,4 @@
-# GI Cancers 2D Gallery Rasa VA
+# Backup page on GI Cancers 2D Gallery Rasa VA
 
 ## Overview
 
@@ -15,14 +15,13 @@ Here is a link to the demo of me interacting with Rasa from Shell:
 Here is a link to the demo of me interacting with Rasa from Slack:
 
 - [YouTube: Colon Cancer Consultation with Slack Rasa VA | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=5VjcWlqOXgU)
-
 Here is a link to the demo of me interacting with Rasa from Unity:
 
 - [YouTube: Colon Cancer Consultation with Unity Rasa VA | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=hQWY9gjZ7WU)
 
 ## Outline
 
-- [GI Cancers 2D Gallery Rasa VA](#gi-cancers-2d-gallery-rasa-va)
+- [Backup page on GI Cancers 2D Gallery Rasa VA](#backup-page-on-gi-cancers-2d-gallery-rasa-va)
   - [Overview](#overview)
   - [Outline](#outline)
   - [Contents](#contents)
@@ -30,14 +29,15 @@ Here is a link to the demo of me interacting with Rasa from Unity:
   - [Deliverablees](#deliverablees)
   - [Setup Software Dev Environment for Project](#setup-software-dev-environment-for-project)
     - [Software Dependencies for Running Demo](#software-dependencies-for-running-demo)
+    - [Anaconda Install Software Dependencies](#anaconda-install-software-dependencies)
   - [Launch Docker SpringBoot and MySQL Before Running Rasa](#launch-docker-springboot-and-mysql-before-running-rasa)
-  - [Build Rasa & Rasa SDK Docker Image](#build-rasa--rasa-sdk-docker-image)
   - [How to Run Rasa Demo](#how-to-run-rasa-demo)
     - [Approach 1: Talk to Rasa VA from Shell](#approach-1-talk-to-rasa-va-from-shell)
     - [Approach 2: Talk to Rasa VA from Slack](#approach-2-talk-to-rasa-va-from-slack)
-    - [No requests to display yet](#no-requests-to-display-yet)
+    - [Approach 3: Talk to Rasa VA from Unity](#approach-3-talk-to-rasa-va-from-unity)
   - [Appendix](#appendix)
     - [Understanding Rasa Conversation Flow](#understanding-rasa-conversation-flow)
+    - [Building a RASA Assistant in Docker](#building-a-rasa-assistant-in-docker)
     - [Rasa Custom Actions Leverage: Scrapy](#rasa-custom-actions-leverage-scrapy)
   - [References](#references)
 
@@ -96,83 +96,70 @@ The following software can be installed in Anaconda or Docker:
 - MySQL 8.0.27
 - Ngrok version latest
 
-My **Docker Desktop version was 4.3.2** when I installed the software above. We will install [Docker Desktop](https://www.docker.com/products/docker-desktop/) to deploy our Rasa app across Docker containers.
+My **Docker Desktop version was 4.3.2** when I installed the software above.
 
-1\. Open your terminal and clone this project repository
+We will install the software using **Anaconda 3** directly on our local machine.
+
+### Anaconda Install Software Dependencies
+
+1\. Clone this project repository
 
 ~~~batch
 git clone https://github.com/james94/GI-Cancers-2D-Gallery
 ~~~
 
-2\. Go to the Rasa GI Cancers project:
+2\. Create ananconda environment:
 
 ~~~batch
-rem change "path\to" with your path to the project
-cd path\to\GI-Cancers-2D-Gallery
+conda create -n rasa-310_rasa-sdk-311 python=3.7
+conda activate rasa-310_rasa-sdk-311
+~~~
+
+3\. Install Python dependencies:
+
+~~~batch
+cd GI-Cancers-2D-Gallery
+pip install -r requirements.txt
 ~~~
 
 ## Launch Docker SpringBoot and MySQL Before Running Rasa
 
-Refer to guide [Deploy MySQL and SpringBoot Containers for GiCancers App](./docs/DockerMySQLBackend.md) that goes through the necessary steps.
-
-After following that guide, you will have a Java Spring Boot Docker container and a MySQL Docker container running.
-
-## Build Rasa & Rasa SDK Docker Image
-
-1\. Open your terminal or command prompt, let's go to the Rasa Dockerfile and build it:
-
-~~~batch
-cd GI-Cancers-2D-Gallery\rasa_apps\RasaDockerfile
-docker build -t rasa_3.1.0_rasa_sdk_3.1.1:dev .
-~~~
-
-You should get a Docker image with Rasa and Rasa SDK installed and other dependencies.
+Refer to guide [Deploy MySQL and SpringBoot Containers for GiCancers App](./docs/DockerMySQLBackend.md) that goes through the necessary.
 
 ## How to Run Rasa Demo
 
 1\. First we'll go to the Rasa project folder:
 
 ~~~batch
-cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
+cd rasa_apps\colon_cancer_va
 ~~~
 
-2\. We will create a docker network **colon-cancer-mayoclinic** for our Rasa Actions Server container to run in:
+2\. Train Rasa NLU Model:
 
 ~~~bash
-docker network create colon-cancer-mayoclinic
+rasa train --domain domain.yml --data data --out models
 ~~~
 
-3\. Deploy a Docker container where we will run Rasa Actions Server:
+Note: In case there is an issue with the newly trained model, I will leave the Rasa **model** version I used during the demo in **cmpe252_demo_model/** folder.
 
-~~~batch
-rem Launch the Docker container named rasa-action-server
-docker run -d --name rasa-action-server -it --privileged -p 5055:5055 -v C:\Users\james\Documents\GitHub\GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va:/app --net colon-cancer-mayoclinic rasa_3.1.0_rasa_sdk_3.1.1:dev
+3\. Turn on Rasa Actions Server:
 
-rem Once the container is launched, lets jump into it to run actions server
-docker exec -it rasa-action-server /bin/bash
-cd /app
+~~~bash
 rasa run actions
 ~~~
 
-Note: rasa **[endpoints.yml](./rasa_apps/colon_cancer_va/endpoints.yml)** will be impacted if you choose to run rasa actions server locally or in docker. For this tutorial, I will leave **endpoints.yml** as it was for docker container approach, so the **url** will contain **rasa-action-server** instead of local machine **<localhost>**.
+Note: rasa **endpoints.yml** will be impacted if you choose to run rasa actions server locally or in docker. For this tutorial, I will leave **endpoints.yml** updated in a way that works for running it on local machine, so the **url** will contain **localhost** instead of docker **<container-name>**.
 
-There are 3 approaches that we can use to talk to our Rasa Virtual Assistant: Slack, Shell or Unity. We will focus on the first two approaches: **Slack and Shell**.
+There are 3 approaches that we can use to talk to our Rasa Virtual Assistant: Slack, Shell or Unity.
 
 ### Approach 1: Talk to Rasa VA from Shell
 
 Talking to Rasa from shell is probably the fastest approach.
 
-1\. Since our rasa actions server is running in our Docker container, open a new terminal, we'll launch another Docker container **rasa-shell** for interacting with Rasa Chatbot:
+4\. Since our rasa actions server is running in our current anaconda prompt, open a new conda prompt, activate our **rasa-310_rasa-sdk-311** conda environment and run rasa shell:
 
 ~~~batch
 cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
-
-rem Launch the Docker container named rasa-shell
-docker run --name rasa-shell -it --privileged -p 5005:5005 -v C:\Users\james\Documents\GitHub\GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va:/app --net colon-cancer-mayoclinic rasa_3.1.0_rasa_sdk_3.1.1:dev
-
-rem Once the container is launched, lets jump into it to exec rasa run server
-docker exec -it rasa-shell /bin/bash
-cd /app
 rasa shell
 ~~~
 
@@ -189,9 +176,9 @@ Here is a link to the demo of me interacting with Rasa from Shell:
 
 ### Approach 2: Talk to Rasa VA from Slack
 
-If you have not setup your own Slack App using Slack's API that Rasa can connect to, follow Rasa's guide **[Rasa - Slack](https://rasa.com/docs/rasa/connectors/slack/)**. Then lets update our **[credentials.yml](./rasa_apps/colon_cancer_va/credentials.yml)** file.
+Assuming that you have setup your own Slack App using Slack's API that Rasa can connect, lets update our **[credentials.yml](./rasa_apps/colon_cancer_va/credentials.yml)** file.
 
-1\. You will need to update the following key value pairs:
+4\. You will need to update the following key value pairs:
 
 ~~~yml
 slack:
@@ -202,39 +189,21 @@ slack:
 
 Once you have updated those slack related credentials, we can launch rasa run server, so we can talk to our chatbot from Slack.
 
-2\. Launch Rasa run server Docker container:
+5\. Launch Rasa run server:
 
 ~~~batch
 cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
-
-rem Launch the Docker container named rasa-run
-docker run --name rasa-run -it --privileged -p 5005:5005 -v C:\Users\james\Documents\GitHub\GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va:/app --net colon-cancer-mayoclinic rasa_3.1.0_rasa_sdk_3.1.1:dev
-
-rem Once the container is launched, lets jump into it to exec rasa run server
-cd /app
 rasa run
 ~~~
 
-3\. Once the rasa run server is running on port 5005, we should open a new terminal and launch ngrok Docker container to expose our Rasa app to the internet, so its easier for slack to connect to it:
+6\. Once the rasa run server is running, we should open a new conda prompt and launch ngrok to expose our Rasa app to the internet, so its easier for slack to connect to it:
 
 ~~~batch
-docker run -d -p 4040:4040 --privileged --net colon-cancer-mayoclinic --name ngrok-integ-rasa wernight/ngrok ngrok http rasa-run:5005
+cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
+ngrok http localhost:5005
 ~~~
 
-The following public urls are examples of what you see going to **http://localhost:4040/inspect/http**:
-
-~~~md
-### No requests to display yet
-
-To get started, make a request to one of your tunnel URLs:
-
-http://72f8-104-58-202-197.ngrok.io
-
-https://72f8-104-58-202-197.ngrok.io
-~~~
-
-
-4\. Now you'll want to go to your **Slack API Event Subscriptions**, under Enable Events, provide it with the url of where it can connect with your Rasa app through the url ngrok created:
+7\. Now you'll want to go to your **Slack API Event Subscriptions**, under Enable Events, provide it with the url of where it can connect with your Rasa app through the url ngrok created:
 
 ~~~batch
 rem Example of web url, change ngrok hostname "72f8-104-58-202-197.ngrok.io"
@@ -245,7 +214,7 @@ If Slack API can connect to Rasa, you should get a verified check mark.
 
 **Troubleshooting**: If you run into issues where slack cant connect to Rasa, make sure "rasa run server" is running in one conda prompt and that the ngrok is running in another conda prompt. If you are running it at a public network, work network, you can try at your home network to see if there is a difference.
 
-5\. Go to your Slack App where you will be interacting with Rasa. Here are some example statements you as the patient can send to Rasa:
+8\. Go to your Slack App where you will be interacting with Rasa. Here are some example statements you as the patient can send to Rasa:
 
 - `"Im visiting about colon cancer"`
 - `"What are the phases of colon cancer?"`
@@ -256,6 +225,54 @@ Here is a link to the demo of me interacting with Rasa from Slack:
 
 - [YouTube: Colon Cancer Consultation with Slack Rasa VA | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=5VjcWlqOXgU)
 
+### Approach 3: Talk to Rasa VA from Unity
+
+Assuming you have Unity installed on your computer, you should be able to import the Unity project from this github repo there.
+
+4\. Launch Rasa run server:
+
+~~~batch
+cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
+rasa run
+~~~
+
+5\. Once the rasa run server is running, we should open a new conda prompt and launch ngrok to expose our Rasa app to the internet(, even if our Unity App is running on our local machine with ngrok and Rasa, Unity should be able to connect to Rasa):
+
+~~~batch
+cd GI-Cancers-2D-Gallery\rasa_apps\colon_cancer_va
+ngrok http localhost:5005
+~~~
+
+6\. Now we will need to update the **rasa_url** in our Unity **[NetworkManager.cs](Rasa-Unity-2D-Gallery\Assets\Scripts\NetworkManager.cs)** file:
+
+~~~C#
+    // Unity communicates to Rasa using custom connectors and POST requests.
+    // Rasa implement a default rest connector which can be accessed at rasa_url
+    private const string rasa_url = "http://72f8-104-58-202-197.ngrok.io/webhooks/rest/webhook";
+~~~
+
+This rasa_url string is in our NetworkManager class.
+
+7\. Remember when we launched ngrok, it created a url for our Unity App to be able to connect to Rasa, we just have to take the **http://<hostname>** part and overwrite that part in our **rasa_url**:
+
+~~~batch
+rem Example of web url, change ngrok hostname "72f8-104-58-202-197.ngrok.io" to yours
+http://72f8-104-58-202-197.ngrok.io/webhooks/slack/webhook
+~~~
+
+8\. Open the **Unity App: Rasa-Unity-2D-Gallery** in **Unity Engine** and run the simulation.
+
+If the Unity App runs and you are able to connect to Rasa from it, you can try these example statements you as the patient can send to Rasa:
+
+- `"Im visiting about colon cancer"`
+- `"What are the phases of colon cancer?"`
+- `"What are the signs of colon cancer?"`
+- `"What are colon cancer risk factors?"`
+
+Here is a link to the demo of me interacting with Rasa from Unity:
+
+- [YouTube: Colon Cancer Consultation with Unity Rasa VA | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=hQWY9gjZ7WU)
+
 
 ## Appendix 
 
@@ -263,9 +280,9 @@ Here is a link to the demo of me interacting with Rasa from Slack:
 
 For referencing Rasa conversation flow, check out this doc: [UnderstandingRasaFlow.md](./docs/UnderstandingRasaFlow.md)
 
-<!-- ### Building a RASA Assistant in Docker
+### Building a RASA Assistant in Docker
 
-For referencing steps on building the Rasa Assistant in Docker, check out this doc: [Building a RASA Assistant in Docker](./docs/BuildingRasaAssistantDocker.md) -->
+For referencing steps on building the Rasa Assistant in Docker, check out this doc: [Building a RASA Assistant in Docker](./docs/BuildingRasaAssistantDocker.md)
 
 ### Rasa Custom Actions Leverage: Scrapy
 
