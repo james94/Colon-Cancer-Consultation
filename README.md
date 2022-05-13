@@ -16,7 +16,7 @@ Here is a link to the demo of me interacting with Rasa from Shell:
 
 - [YouTube: Colon Cancer Consultation with Rasa Shell VA | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=A-pmkEfo9Ps)
 
-![rasa_shell_cc_risk_factors_mayoclinic](images\rasa_shell_cc_risk_factors_mayoclinic.jpg)
+![rasa_shell_cc_risk_factors_mayoclinic](./images/rasa_shell_cc_risk_factors_mayoclinic.jpg)
 
 **Figure 1:** Rasa Shell App Deployment Example
 
@@ -24,7 +24,7 @@ Here is a link to the demo of me interacting with Rasa from Slack:
 
 - [YouTube: Colon Cancer Consultation with Slack Rasa VA | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=5VjcWlqOXgU)
 
-![rasa_slack_app_4_28_22](images\rasa_slack_app_4_28_22.jpg)
+![rasa_slack_app_4_28_22](./images/rasa_slack_app_4_28_22.jpg)
 
 **Figure 2:** Rasa Slack App Deployment Example
 
@@ -32,7 +32,7 @@ Here is a link to the demo of me interacting with Rasa from Unity:
 
 - [YouTube: Colon Cancer Consultation with Unity Rasa VA | SJSU CMPE 252 AI Demo](https://www.youtube.com/watch?v=hQWY9gjZ7WU)
 
-![rasa_unity_app_4_28_22](images\rasa_unity_app_4_28_22.png)
+![rasa_unity_app_4_28_22](./images/rasa_unity_app_4_28_22.png)
 
 **Figure 3:** Rasa Unity App Deployment Example
 
