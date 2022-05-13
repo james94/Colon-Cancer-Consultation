@@ -43,7 +43,7 @@ Here is a link to the demo of me interacting with Rasa from Unity:
   - [Outline](#outline)
   - [Contents](#contents)
   - [Chatbot Functionality](#chatbot-functionality)
-  - [Deliverablees](#deliverablees)
+  - [Deliverables](#deliverables)
   - [Setup Software Dev Environment for Project](#setup-software-dev-environment-for-project)
     - [Software Dependencies for Running Demo](#software-dependencies-for-running-demo)
   - [Launch Docker SpringBoot and MySQL Before Running Rasa](#launch-docker-springboot-and-mysql-before-running-rasa)
@@ -83,7 +83,7 @@ Here is a link to the demo of me interacting with Rasa from Unity:
     - [x] Make API Call to Fetch Colon Cancer Risk Factors
 - [x] Needs to be deployed on Slack (see below).
 
-## Deliverablees
+## Deliverables
 
 - [x] Presentation in class
     - Must cover the following for your chatbot:
